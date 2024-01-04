@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .email_list{
+            text-transform: lowercase;
+        }
+        .heading_email{
+            text-transform: capitalize;
+        }
+        .item{
+            border: 1px solid gray;
+            background-color: lightsalmon;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="user_div"></div>
+
+    <script>
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(res => res.json())
+        .then(data => userDetails(data));
+
+        function userDetails(data) {
+           let lists = "";
+           data.forEach(user => {
+            lists = lists + `<div class ="item">
+                <h1>Name: ${user.name}</h1>
+                <p class ="email_list"><spam class = "heading_email">Email: </spam> ${user.email}</p>
+                <p>${user.address.street}. ${user.address.suite}. ${user.address.city}</p>
+                <p>${user.company.name}. ${user.company.catchPhrase}. ${user.company.bs}</p>
+                
+                
+            
+            </div>`
+
+            
+            const users = document.getElementById('user_div');
+            users.innerHTML = lists;
+
+           })
+            
+        }
+    </script>
+</body>
+</html>
